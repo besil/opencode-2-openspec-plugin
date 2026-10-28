@@ -1,0 +1,46 @@
+{
+  "name": "opencode-2-openspec-plugin",
+  "version": "0.1.0",
+  "description": "An OpenCode v2 plugin that integrates OpenSpec, providing a dedicated openspec-planner agent for planning and specifying software architecture.",
+  "type": "module",
+  "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./src/index.ts --outfile ./dist/index.js --target node --external @opencode/plugin",
+    "watch": "bun build ./src/index.ts --outfile ./dist/index.js --target node --external @opencode/plugin --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "bun run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/besil/opencode-2-openspec-plugin.git"
+  },
+  "keywords": [
+    "opencode",
+    "plugin",
+    "openspec",
+    "agent",
+    "architecture",
+    "planning",
+    "spec",
+    "spec-driven-development"
+  ],
+  "author": "besil",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/besil/opencode-2-openspec-plugin/issues"
+  },
+  "homepage": "https://github.com/besil/opencode-2-openspec-plugin#readme",
+  "dependencies": {
+    "@opencode/plugin": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "^5.0.0"
+  }
+}
