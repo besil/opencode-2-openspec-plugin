@@ -73,38 +73,15 @@ bun run watch     # rebuild on change
 
 ## Publishing
 
-Publishing is automated by GitHub Actions using npm **Trusted Publishing** (OIDC). No long-lived npm token is stored in the repository.
-
-### One-time setup
-
-npm requires the package to exist before a Trusted Publisher can be attached. Bootstrap it once from your machine:
+Publishing is done manually. Build and publish from the repository root:
 
 ```sh
-npm login                 # interactive, with 2FA
+bun install
+bun run build
 npm publish --access public
 ```
 
-Then attach the GitHub Actions trusted publisher (either in the npm UI under **Package → Settings → Trusted Publishing**, or with the CLI):
-
-```sh
-npm trust github opencode-2-openspec-plugin \
-  --file publish.yml \
-  --repo besil/opencode-2-openspec-plugin \
-  --allow-publish
-```
-
-> Newer npm versions can run `npm trust github` before the first publish; if it refuses, do the one-time `npm publish` above first.
-
-Optionally harden the package afterwards under **Settings → Publishing access → Require two-factor authentication and disallow tokens**.
-
-### Releasing
-
-```sh
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-The `publish.yml` workflow builds the plugin and publishes it to npm over OIDC. The `id-token: write` permission in the workflow is the only credential involved.
+`prepublishOnly` rebuilds `dist/` automatically before the tarball is packed.
 
 ## License
 
